@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relatório de Atividades — DIY CTRL</title>
+  <style>
+    :root {
+      --accent: #e85d04;
+      --bg: #f8f7f4;
+      --surface: #ffffff;
+      --text: #1a1a1a;
+      --muted: #666;
+      --border: #e0ddd8;
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── Header ── */
+    header {
+      background: #111;
+      color: #fff;
+      padding: 3rem 2rem 2.5rem;
+      text-align: center;
+    }
+
+    header .tag {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .3rem .8rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    header h1 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin-bottom: .6rem;
+    }
+
+    header h1 span { color: var(--accent); }
+
+    .meta-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .5rem 2rem;
+      margin-top: 1.4rem;
+      font-size: .85rem;
+      color: #bbb;
+    }
+
+    .meta-grid strong { color: #fff; }
+
+    /* ── Layout ── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    /* ── Sections ── */
+    section { margin-bottom: 3.5rem; }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 1.5rem;
+      padding-bottom: .6rem;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .section-title .num {
+      background: var(--accent);
+      color: #fff;
+      font-size: .8rem;
+      font-weight: 700;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── Etapas ── */
+    .etapa {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+
+    .etapa h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: .6rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .etapa p { color: #333; margin-bottom: .6rem; }
+    .etapa p:last-child { margin-bottom: 0; }
+
+    /* ── Module list ── */
+    .module-list {
+      list-style: none;
+      margin: .8rem 0;
+    }
+
+    .module-list li {
+      padding: .45rem .8rem;
+      border-left: 3px solid var(--accent);
+      margin-bottom: .4rem;
+      background: #faf9f7;
+      border-radius: 0 4px 4px 0;
+      font-size: .92rem;
+    }
+
+    /* ── Links ── */
+    a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: var(--accent);
+      color: #fff !important;
+      font-size: .82rem;
+      font-weight: 700;
+      padding: .35rem .85rem;
+      border-radius: 4px;
+      margin-top: .5rem;
+      text-decoration: none !important;
+      transition: opacity .15s;
+    }
+
+    .link-btn:hover { opacity: .85; }
+
+    /* ── Image grids ── */
+    .img-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: .75rem;
+      margin-top: 1.25rem;
+    }
+
+    .img-grid img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .img-grid img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 20px rgba(0,0,0,.15);
+    }
+
+    .img-single {
+      margin-top: 1.25rem;
+      text-align: center;
+    }
+
+    .img-single img {
+      max-width: 100%;
+      max-height: 400px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    /* ── Contrapartidas ── */
+    .contrapartida {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .contrapartida h3 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: .5rem;
+    }
+
+    .contrapartida p { color: #333; font-size: .94rem; }
+
+    /* ── Stat boxes ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1rem;
+      text-align: center;
+    }
+
+    .stat .value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat .label {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-top: .35rem;
+    }
+
+    /* ── Final ── */
+    .final-block {
+      background: #111;
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 2rem 2rem;
+    }
+
+    .final-block p { color: #ccc; margin-bottom: .5rem; }
+    .final-block strong { color: #fff; }
+
+    /* ── Lightbox ── */
+    #lb-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.88);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    #lb-overlay.open { display: flex; }
+    #lb-overlay img { max-width: 92vw; max-height: 92vh; border-radius: 6px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 500px) {
+      .img-grid { grid-template-columns: repeat(2, 1fr); }
+      .img-grid img { height: 120px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════════════════════ -->
+<header>
+  <div class="tag">Relatório de Atividades</div>
+  <h1>DIY <span>CTRL</span></h1>
+  <p style="color:#aaa;font-size:.95rem;margin-top:.4rem">
+    Desenvolvimento e construção de controles para jogos não convencionais
+  </p>
+  <div class="meta-grid">
+    <span><strong>Código:</strong> 82157</span>
+    <span><strong>Edital:</strong> 095/2024</span>
+    <span><strong>Mecanismo:</strong> Fundo Municipal de Incentivo à Cultura</span>
+    <span><strong>Proponente:</strong> Felipe Santos Gomes</span>
+    <span><strong>Local:</strong> Estúdio Riachuelo — Curitiba/PR</span>
+    <span><strong>Período:</strong> 11/10/2024 a 27/02/2026</span>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════
+     MAIN
+══════════════════════════════════════════════════════════ -->
+<main>
+
+  <!-- Números em destaque -->
+  <div class="stats">
+    <div class="stat"><div class="value">10</div><div class="label">Participantes</div></div>
+    <div class="stat"><div class="value">60h</div><div class="label">De curso</div></div>
+    <div class="stat"><div class="value">7</div><div class="label">Projetos autorais</div></div>
+    <div class="stat"><div class="value">20</div><div class="label">Controles acessíveis</div></div>
+    <div class="stat"><div class="value">9</div><div class="label">Part. no workshop</div></div>
+    <div class="stat"><div class="value">50</div><div class="label">Posters distribuídos</div></div>
+  </div>
+
+  <!-- 1. Apresentação -->
+  <section>
+    <h2 class="section-title"><span class="num">1</span> Apresentação</h2>
+    <p>
+      O projeto <strong>DIY CTRL</strong> teve como objetivo capacitar participantes na criação e construção de
+      controles de videogame personalizados, utilizando ferramentas de fabricação digital como modelagem 3D,
+      eletrônica básica, impressão 3D e corte a laser. O curso foi realizado de forma gratuita no Estúdio
+      Riachuelo, em Curitiba, com foco na <strong>acessibilidade, inclusão digital e democratização do acesso
+      à cultura maker e aos games</strong>.
+    </p>
+  </section>
+
+  <!-- 2. Etapas -->
+  <section>
+    <h2 class="section-title"><span class="num">2</span> Etapas de Execução</h2>
+
+    <div class="etapa">
+      <h3>Etapa 1 — Pré-Produção</h3>
+      <p>
+        Foram realizadas a concepção do material didático, produção de apresentações e planos de aula,
+        pesquisa de conteúdo, reserva do espaço no Estúdio Riachuelo e divulgação inicial do curso.
+        A equipe responsável foi composta por <strong>Felipe Santos Gomes</strong> e
+        <strong>Karolyna Dawidziak Piazzetta</strong>.
+      </p>
+    </div>
+
+    <div class="etapa">
+      <h3>Etapa 2 — Produção / Execução</h3>
+      <p>
+        Realizada a aquisição de materiais, pré-montagem de componentes eletrônicos e abertura de edital
+        para seleção de participantes, com reserva de vagas para grupos de cotas, totalizando
+        <strong>17 inscrições</strong>.
+      </p>
+      <p>
+        O curso foi ministrado em uma turma com <strong>10 participantes</strong> e
+        <strong>60 horas</strong> entre aulas, atividades práticas e mentorias, divididas nos módulos:
+      </p>
+      <ul class="module-list">
+        <li><strong>Aulas 01–05:</strong> Fundamentos do curso e introdução ao Blender para modelagem 3D</li>
+        <li><strong>Aulas 06–10:</strong> Eletrônica básica e programação com Arduino</li>
+        <li><strong>Aulas 11–15:</strong> Prototipagem com impressão 3D e corte a laser</li>
+        <li><strong>Aulas 16–20:</strong> Desenvolvimento de projetos pessoais e apresentação final</li>
+      </ul>
+
+      <div class="img-grid" style="margin-top:1rem">
+        <img src="images/IMG_1637.JPEG" alt="Aula em andamento" onclick="openLb(this)" />
+        <img src="images/IMG_1999.JPEG" alt="Aula em andamento" onclick="openLb(this)" />
+      </div>
+
+      <p style="margin-top:1rem">Todas as aulas foram gravadas na íntegra:</p>
+      <a class="link-btn" href="https://www.dropbox.com/scl/fo/qzzlpid9yqvlwl1q0gqen/AHOqNtctAL8fYEieM0hOmjA?rlkey=pvzzx1yv2248qfq3uho64mta0&dl=0" target="_blank">
+        ▶ Gravações das aulas (Drive)
+      </a>
+
+      <p style="margin-top:1rem">Apresentações utilizadas durante o curso:</p>
+      <a class="link-btn" href="https://www.dropbox.com/scl/fo/40if1r8h729vihzv6ojr5/AHN-tvn226r2aGbi8ZChM6s?rlkey=mh5hbr2m2eqrmnwpmbm01y7qw&dl=0" target="_blank">
+        📄 PDFs das apresentações
+      </a>
+
+      <p style="margin-top:1rem">
+        Ao término do curso, foram desenvolvidos e apresentados <strong>7 projetos autorais</strong> de
+        controles de videogame não convencionais pelos participantes.
+      </p>
+
+      <p>
+        Os alunos também documentaram seus projetos em um
+        <a href="https://discord.gg/292ctQBj" target="_blank">grupo no Discord</a>.
+        Exemplos podem ser vistos neste
+        <a href="https://youtu.be/x42YA7X7GJE" target="_blank">vídeo no YouTube</a>.
+      </p>
+    </div>
+
+    <div class="etapa">
+      <h3>Etapa 3 — Divulgação</h3>
+      <p>
+        A divulgação foi realizada por meio de <strong>20 publicações</strong> em stories e posts no
+        Instagram, TikTok e Facebook, além da impressão e distribuição de <strong>50 posters A3</strong>
+        em centros culturais, universidades e espaços comunitários de Curitiba.
+      </p>
+
+      <div class="img-grid">
+        <img src="images/DIYCTRL-05.jpg" alt="Divulgação" onclick="openLb(this)" />
+        <img src="images/DIYCTRL-08.jpg" alt="Divulgação" onclick="openLb(this)" />
+        <img src="images/DIYCTRL-11.jpg" alt="Divulgação" onclick="openLb(this)" />
+        <img src="images/DIYCTRL-13.jpg" alt="Divulgação" onclick="openLb(this)" />
+        <img src="images/DIYCTRL-15.jpg" alt="Divulgação" onclick="openLb(this)" />
+        <img src="images/WA-20260412-1.jpeg" alt="Divulgação" onclick="openLb(this)" />
+        <img src="images/WA-20260412-2.jpeg" alt="Divulgação" onclick="openLb(this)" />
+        <img src="images/WA-20260412-3.jpeg" alt="Divulgação" onclick="openLb(this)" />
+        <img src="images/WA-20260412-4.jpeg" alt="Divulgação" onclick="openLb(this)" />
+        <img src="images/WA-20260412-5.jpeg" alt="Divulgação" onclick="openLb(this)" />
+        <img src="images/WA-20260412-6.jpeg" alt="Divulgação" onclick="openLb(this)" />
+        <img src="images/WA-20260412-7.jpeg" alt="Divulgação" onclick="openLb(this)" />
+        <img src="images/WA-20260412-8.jpeg" alt="Divulgação" onclick="openLb(this)" />
+        <img src="images/WA-20260412-9.jpeg" alt="Divulgação" onclick="openLb(this)" />
+      </div>
+    </div>
+
+    <div class="etapa">
+      <h3>Etapa 4 — Pós-Produção</h3>
+      <p>
+        Foram realizadas as contrapartidas sociais previstas no projeto, a apresentação pública dos
+        trabalhos desenvolvidos e a organização da prestação de contas.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. Contrapartidas -->
+  <section>
+    <h2 class="section-title"><span class="num">3</span> Contrapartidas Sociais</h2>
+
+    <div class="contrapartida">
+      <h3>3.1 Vídeo Aula</h3>
+      <p>
+        Foi produzido e publicado vídeo aula de aproximadamente <strong>30 minutos</strong> condensando
+        o conteúdo do curso, disponibilizado gratuitamente no YouTube.
+      </p>
+      <a class="link-btn" href="https://youtu.be/n_D5ICHZoFM" target="_blank">▶ Assistir no YouTube</a>
+    </div>
+
+    <div class="contrapartida">
+      <h3>3.2 PDF Resumo Teórico-Prático</h3>
+      <p>
+        Material de estudo em formato PDF com os principais conteúdos e tutoriais do curso,
+        de acesso público e gratuito.
+      </p>
+      <a class="link-btn" href="https://www.dropbox.com/scl/fi/aslsnsltjdmg3oq8lku7j/DIYCLTRL_apostila_v8.pdf?rlkey=lm9jubkcrpiymwq6utnqwylrc&dl=0" target="_blank">📄 Baixar PDF</a>
+    </div>
+
+    <div class="contrapartida">
+      <h3>3.3 Controles Acessíveis para Pessoas com Deficiência</h3>
+      <p>
+        Foram produzidos e entregues <strong>20 adaptadores de controles acessíveis</strong> para
+        pessoas com deficiência física, selecionadas por indicação dos participantes, chamada pública
+        e sorteio.
+      </p>
+      <div class="img-single">
+        <img src="images/CCA.png" alt="Controles acessíveis" />
+      </div>
+      <p style="margin-top:1rem">
+        Foi também produzida uma página reunindo iniciativas open source de games e acessibilidade
+        encontradas durante o projeto.
+      </p>
+      <a class="link-btn" href="https://araucarialab.github.io/Catalogo-de-Controladores-Acessiveis/" target="_blank">🌐 Controles Acessíveis</a>
+    </div>
+
+    <div class="contrapartida">
+      <h3>3.4 Workshop para Educadores — Estúdio Riachuelo</h3>
+      <p>
+        Em <strong>21/02/2026</strong> foi realizado workshop de <strong>4 horas</strong> voltado à
+        comunidade e professores da rede pública, abordando as possibilidades da cultura maker
+        aplicada aos games. O evento contou com <strong>9 participantes</strong>.
+      </p>
+      <a class="link-btn" href="https://youtube.com/shorts/hi7sNZ8BMpI" target="_blank">▶ Ver no YouTube</a>
+    </div>
+
+    <div class="contrapartida">
+      <h3>3.5 Exposição de Resultados — Estúdio Riachuelo</h3>
+      <p>
+        Os <strong>7 protótipos</strong> produzidos durante o curso foram expostos no Estúdio Riachuelo
+        no período de <strong>13/02/2026 a 21/02/2026</strong>, com acesso gratuito ao público.
+      </p>
+      <div class="img-single">
+        <img src="images/WA-20260221.jpeg" alt="Exposição de resultados" onclick="openLb(this)" style="cursor:pointer" />
+      </div>
+      <div style="margin-top:.75rem;display:flex;gap:.75rem;flex-wrap:wrap">
+        <a class="link-btn" href="https://youtube.com/shorts/UdrN_0xeuXI?feature=share" target="_blank">▶ Ver no YouTube</a>
+        <a class="link-btn" href="https://www.dropbox.com/scl/fo/tdhkcki13bjuoty6y1mia/AD4Lxm5PRh_tw2clOvJZfi8?rlkey=6r1rbmailuoyciju5kilmasnr&dl=0" target="_blank">🖼 Ver fotos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Considerações Finais -->
+  <section>
+    <h2 class="section-title"><span class="num">4</span> Considerações Finais</h2>
+    <p style="margin-bottom:2rem">
+      O projeto DIY CTRL foi executado conforme planejado, atingindo seus objetivos de capacitação técnica,
+      inclusão digital e democratização do acesso à cultura maker e aos games. Os 7 projetos desenvolvidos
+      pelos participantes demonstram o aprendizado interdisciplinar proposto, integrando modelagem 3D,
+      eletrônica e fabricação digital. As contrapartidas sociais foram cumpridas integralmente, ampliando
+      o alcance do projeto para além do público diretamente atendido pelo curso.
+    </p>
+    <div class="final-block">
+      <p><strong>Curitiba, 13 de abril de 2026</strong></p>
+      <p style="margin-top:.8rem"><strong>Felipe Santos Gomes</strong></p>
+      <p style="color:#888;font-size:.88rem">CPF 072.558.169-75</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- Lightbox -->
+<div id="lb-overlay" onclick="closeLb()">
+  <img id="lb-img" src="" alt="" />
+</div>
+
+<script>
+  function openLb(el) {
+    document.getElementById('lb-img').src = el.src;
+    document.getElementById('lb-overlay').classList.add('open');
+  }
+  function closeLb() {
+    document.getElementById('lb-overlay').classList.remove('open');
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+</script>
+
+</body>
+</html>
